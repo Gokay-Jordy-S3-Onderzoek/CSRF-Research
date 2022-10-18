@@ -42,3 +42,15 @@ That is why it is best to use this kind of method with important requests, like 
 ## How to implement CSRF protection?
 
 
+## Sources
+
+1. https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
+2. https://brightsec.com/blog/csrf-mitigation/
+3. https://www.hacksplaining.com/prevention/csrf
+4. https://blog.jdriven.com/2014/10/stateless-spring-security-part-1-stateless-csrf-protection/
+5. https://portswigger.net/web-security/csrf
+6. https://youtu.be/RdR4MQrfp-M 
+7. https://owasp.org/www-community/attacks/csrf 
+8. https://youtu.be/eWEgUcHPle0
+
+
