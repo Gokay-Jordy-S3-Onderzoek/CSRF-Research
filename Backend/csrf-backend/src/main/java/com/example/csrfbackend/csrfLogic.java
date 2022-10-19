@@ -16,10 +16,12 @@ public class csrfLogic {
                     .filter(cookie->"USERTOKEN".equals(cookie.getName()))
                     .map(Cookie::getValue)
                     .findAny();
+            System.out.println("COOKIES:");
+            System.out.println(cookieValue);
             if(cookieValue.get() != null){
                 if(cookieValue.get().equals(requestValue)){
                     System.out.println(cookieValue.get());
-                    return  true;
+                    return true;
                 }
 
             }

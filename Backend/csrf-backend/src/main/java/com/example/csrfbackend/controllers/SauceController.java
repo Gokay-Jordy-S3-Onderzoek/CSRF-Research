@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RestController
 @RequestMapping("/api/sauce")
 public class SauceController {
     csrfLogic logic = new csrfLogic();
-    @GetMapping
+    @PostMapping
     public ResponseEntity<?> GetAllSauce(HttpServletRequest request, @RequestBody String csrfValue){
         System.out.println(csrfValue);
         if(logic.CheckCSRF(request,csrfValue)){
