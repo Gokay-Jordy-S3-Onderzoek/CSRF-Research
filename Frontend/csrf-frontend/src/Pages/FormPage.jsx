@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { AxiosContext } from 'react-axios/lib/components/AxiosProvider';
-import {useCookies} from 'react-cookie';
+import { useCookies } from 'react-cookie';
 import Cookies from 'universal-cookie';
 
 axios.defaults.withCredentials = true;
@@ -25,14 +25,14 @@ export default function FormPage() {
 
     const cookies = new Cookies();
 
-    cookies.set('USERTOKEN', usertoken, { path: '/', sameSite: 'none', secure: true });
+    cookies.set('USERTOKEN', usertoken, { path: '/api', sameSite: 'none', secure: true });
 
     console.log(usertoken)
 
-    const response = await axios('http://127.0.0.1:8080/api/sauce', {
+    const response = await axios('http://localhost:8080/api/sauce', {
       method: 'post',
       data: {
-        USERTOKEN : usertoken
+        usertoken
       },
       headers: {
         Accept: 'application/json',
