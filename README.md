@@ -232,6 +232,16 @@ const response = await axios('http://localhost:8080/api/sauce', {
 });
 ```
 
+If everything works correctly, you should see a `Cookies` tab, containing the cookie you created, in the request under the `Network` tab when inspecting the page (Press F12).
+
+<img src="screenshots/request-cookie.png" width="550"/>
+
+</br>
+
+The Token should also be visible under the `Payload` tab in the same request.
+
+<img src="screenshots/request-payload.png" width="550"/>
+
 ## Sources
 
 1. https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html
