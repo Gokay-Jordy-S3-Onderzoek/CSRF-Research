@@ -215,12 +215,9 @@ Just take a look at what you need, but the options we used can be seen below:
 const usertoken = makeid();
 const cookies = new Cookies();
 
-cookies.set("USERTOKEN", usertoken, {
-  path: "/api",
-  sameSite: "none",
-  secure: true,
-});
-```
+cookies.set('USERTOKEN', usertoken, { path: '/api', sameSite: 'Strict', secure: true });
+
+Setting the `sameSite` option to `Strict` tells the browser to not include cookies in any requests that originate from other sites.
 
 #### Add the token to request body
 
