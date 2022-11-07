@@ -150,6 +150,96 @@ That is why it is best to use this kind of method with important requests, like 
  
 ## How to implement CSRF protection?
 
+### Frontend
+
+For the double submitting cookies method, the frontend will be responsible for generating a random token and sending it along a request to the backend. It will send the token as a cookie and as something else, for example the request-body. 
+
+So there's a couple things we need to do:
+
+-   Generate a token.
+-   Create a cookie and send it along the request.
+-   Add the token to the request body.
+
+#### Generating a token
+
+On the internet you'll find plenty of codeblocks that generate random strings, for whatever
+language you need. Because we're using React, ours will be written in JavaScript. After a quick search I came across the following code:
+
+```javascript
+function makeid() {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < 20; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+```
+
+*Ofcourse you can give the function whatever name you'd like.*
+
+#### Creating a cookie
+
+You're going to need to store the token in a cookie which is going to be sent along the request. Luckily creating a cookie is rather simple. All you need is a third-party package called [universal-cookies](https://github.com/reactivestack/cookies/tree/master/packages/universal-cookie).
+
+Install the package using the following command:
+
+```javascript
+npm install universal-cookie
+```
+
+Don't forget to put the import-statement in the file you're going to use the package:
+
+```javascript
+import Cookies from 'universal-cookie';
+```
+
+To create a cookie using the package, you have to create an instance of the `Cookies` class and use the `set()` method. The first argument is the name of the cookie, second argument is the value itself, and after that an object containing optional options.
+
+Some examples of possible options are:
+
+-   path (string)
+-   expires (Date)
+-   domain (string)
+-   httpOnly (boolean)
+-   sameSite (boolean|none|lax|strict)
+
+Just take a look at what you need, but the options we used can be seen below:
+
+```javascript
+const usertoken = makeid();
+const cookies = new Cookies();
+
+cookies.set('USERTOKEN', usertoken, { path: '/api', sameSite: 'none', secure: true });
+```
+
+#### Add the token to request body
+
+Now we create the request to the endpoint we need to call. The request URL, headers and other options can be different depending on your project, but what *will* be the same is the `data` object containing the token.
+
+```javascript
+const response = await axios('http://localhost:8080/api/sauce', {
+    method: 'post',
+    data: {
+        usertoken
+    },
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+    }
+});
+```
+
+If everything works correctly, you should see a `Cookies` tab, containing the cookie you created, in the request under the `Network` tab when inspecting the page (Press F12).
+
+<img src="screenshots/request-cookie.png" width="550"/>
+
+</br>
+
+The Token should also be visible under the `Payload` tab in the same request.
+
+<img src="screenshots/request-payload.png" width="550"/>
 
 ## Sources
 
