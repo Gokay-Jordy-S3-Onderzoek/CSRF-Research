@@ -181,7 +181,7 @@ function makeid() {
 }
 ```
 
-_Ofcourse you can give the function whatever name you'd like._
+*Ofcourse you can give the function whatever name you'd like.*
 
 #### Creating a cookie
 
@@ -216,6 +216,7 @@ const usertoken = makeid();
 const cookies = new Cookies();
 
 cookies.set('USERTOKEN', usertoken, { path: '/api', sameSite: 'Strict', secure: true });
+```
 
 Setting the `sameSite` option to `Strict` tells the browser to not include cookies in any requests that originate from other sites.
 
