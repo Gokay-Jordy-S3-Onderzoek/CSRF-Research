@@ -216,7 +216,7 @@ cookies.set('USERTOKEN', usertoken, { path: '/api', sameSite: 'none', secure: tr
 
 #### Add the token to request body
 
-Now we create the request to the endpoint we need to call. The request URL, headers and other options can be different depending on your project, but what *will* be the same is the `data` object containing the token. If needed, add the `withCredentials` option, if the request works without it, it's not needed.
+Now we create the request to the endpoint we need to call. The request URL, headers and other options can be different depending on your project, but what *will* be the same is the `data` object containing the token.
 
 ```javascript
 const response = await axios('http://localhost:8080/api/sauce', {
@@ -227,8 +227,7 @@ const response = await axios('http://localhost:8080/api/sauce', {
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-    },
-    withCredentials: true
+    }
 });
 ```
 
