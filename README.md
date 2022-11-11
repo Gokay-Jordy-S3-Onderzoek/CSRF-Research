@@ -340,9 +340,12 @@ To prevent CSRF, it is important to understand how it works.  Once you understan
 The easiest way to implement CSRF protection is with a double-submit cookie method. This method works by creating a unique token that is sent along the request as cookie and requestbody.  
 
 
-For our own projects we do need protection for some of our backend endpoints, but we do not use cookie's to authenticate our users. But we do have multiple endpoints that can be called without authentication.
-This means that a attacker could use CSRF to perform actions on our backend without being authenticated, like deleting data or changing data. To prevent this from happening we will need to implement the double-submit cookie method. 
+<!-- For our own projects we do need protection for some of our backend endpoints, but we do not use cookie's to authenticate our users. But we do have multiple endpoints that can be called without authentication.
+This means that a attacker could use CSRF to perform actions on our backend without being authenticated, like deleting data or changing data. To prevent this from happening we will need to implement the double-submit cookie method.  -->
 
+We need CSRF protection for our own project. Right now, our endpoints are not protected by an authentication-middleware. That means that an endpoint can be called without having to be logged in. But even if that were the case, an attacker could still make a user with an active session click on a malicious URL, causing the webapp to execute an unwanted operation.
+
+Even if your app doesn't do anything with sessions, if it saves a user in a browsercookie, you're also vulnerable to CSRF.
 
 
 ## Sources
