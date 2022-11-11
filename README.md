@@ -1,5 +1,14 @@
 # CSRF-Research
 
+
+## Table of contents
+1. [What is CSRF?](#what-is-csrf?)
+2. [What does an attack look like?](#what-does-an-attack-look-like)
+3. [Solution(s) to CSRF vulnerability?](#solutions-to-csrf-vulnerability)
+4. [How to implement CSRF protection?](#how-to-implement-csrf-protection)
+5. [What is the impact of CSRF on our application?](#what-is-the-impact-of-csrf-on-our-application)
+6. [Sources](#sources)
+
 ## What is CSRF?
 
 CSRF also known as Cross Site Request Forgery is that a domain can forge requests for another domain by modifying the parameters in a request.
@@ -321,6 +330,20 @@ And it will give an error if these values don't match, let's see what our respon
 <img src="./screenshots/ResponeBad.png">
 
 After testing these examples we can confirm that our csrf protection is in full effect.
+
+
+## What is the impact of CSRF on our application?
+
+CSRF is a very serious security vulnerability that can allow an attacker to perform actions on behalf of a user.  
+For example, an attacker could use CSRF to transfer money from a user's bank account.  
+To prevent CSRF, it is important to understand how it works.  Once you understand how CSRF works, you can use CSRF protection to prevent CSRF attacks.  CSRF protection needs to be implemented in the client and the server. 
+The easiest way to implement CSRF protection is with a double-submit cookie method. This method works by creating a unique token that is sent along the request as cookie and requestbody.  
+
+
+For our own projects we do need protection for some of our backend endpoints, but we do not use cookie's to authenticate our users. But we do have multiple endpoints that can be called without authentication.
+This means that a attacker could use CSRF to perform actions on our backend without being authenticated, like deleting data or changing data. To prevent this from happening we will need to implement the double-submit cookie method. 
+
+
 
 ## Sources
 
